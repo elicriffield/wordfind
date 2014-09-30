@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"flag"
 	"fmt"
 	"log"
 	"os"
@@ -122,7 +123,10 @@ func findWord(findme string, puzzle []string, output [][]byte) [][]byte {
 }
 
 func main() {
-	puzzle, words, err := readInput("/tmp/data1")
+	filename := flag.String("input", "/tmp/data1", "The file to read the puzzle from")
+	flag.Parse()
+
+	puzzle, words, err := readInput(*filename)
 	if err != nil {
 		log.Fatal(err)
 	}
